@@ -1,0 +1,20 @@
+<div *ngIf="hero; else notFound">
+  <div>
+    <h1 class="display-4">
+      Nombre <strong>{{ hero.name }}</strong>
+    </h1>
+    <p>
+      <span>Descripción</span>
+      <span>{{ hero.description }}</span>
+    </p>
+  </div>
+  <div>
+    <img class="rounded" [src]="hero.image | img" [alt]="hero.name + ' imagen'" />
+  </div>
+</div>
+
+<ng-template #notFound>
+  <h1>Super héroe no encontrado 😢</h1>
+</ng-template>
+
+<a class="btn btn-primary mt-3" type="button" routerLink="/">Volver</a>

@@ -1,0 +1,6 @@
+<div *ngIf="control?.errors && (control.dirty || control.touched)">
+  <small class="d-block text-danger" *ngIf="control.errors.required">Campo requerido.</small>
+  <small class="d-block text-danger" *ngIf="control.errors.minlength">Longitud mínima de {{control.errors.minlength.requiredLength}} caractéres.</small>
+  <small class="d-block text-danger" *ngIf="control.errors.maxlength">Longitud máxima de {{control.errors.maxlength.requiredLength}} caractéres.</small>
+  <small class="d-block text-danger" *ngIf="control.errors.pattern">El campo no cumple con un formato válido.</small>
+</div>

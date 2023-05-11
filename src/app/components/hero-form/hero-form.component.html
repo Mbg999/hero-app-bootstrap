@@ -1,0 +1,108 @@
+<div id="hero-form-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <!-- MODAL CONTENT -->
+    <div class="modal-content">
+      <!-- HEADER -->
+      <div class="modal-header">
+        <!-- TITLE -->
+        <h3 class="modal-title">
+          {{ hero?.id ? "Actualizar" : "Crear" }} super héroe
+        </h3>
+        <!-- /TITLE -->
+        <!-- CLOSE BTN -->
+        <button
+          (click)="close.emit()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <!-- /CLOSE BTN -->
+      </div>
+      <!-- /HEADER -->
+      <!-- BODY -->
+      <div class="modal-body">
+        <form [formGroup]="form" (submit)="submit()" novalidate>
+          <!-- ID (update only) -->
+          <div class="mt-1" *ngIf="hero?.id">
+            <label class="form-label" for="id">ID</label>
+            <input
+              class="form-control"
+              id="id"
+              type="text"
+              [value]="hero?.id"
+              disabled
+            />
+          </div>
+          <!-- /ID (update only) -->
+          <!-- NAME -->
+          <div class="mt-1">
+            <label class="form-label" for="name">Nombre</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Batman"
+              formControlName="name"
+              autocomplete="off"
+              appToUpperCase
+              class="form-control"
+            />
+            <app-validation-messages
+              [control]="form.controls['name']"
+            ></app-validation-messages>
+          </div>
+          <!-- /NAME -->
+          <!-- DESCRIPTION -->
+          <div class="mt-1">
+            <label class="form-label" for="description">Descripción</label>
+            <textarea
+              id="description"
+              rows="4"
+              placeholder="Batman es la identidad secreta de Bruce Wayne, un empresario multimillonario, galán y filántropo."
+              autocomplete="off"
+              formControlName="description"
+              class="form-control"
+            ></textarea>
+            <app-validation-messages
+              [control]="form.controls['description']"
+            ></app-validation-messages>
+          </div>
+          <!-- /DESCRIPTION -->
+          <!-- IMAGE -->
+          <div class="mt-1">
+            <label class="form-label" for="image">Imagen</label>
+            <input
+              id="image"
+              type="text"
+              placeholder="http://your-image.com"
+              formControlName="image"
+              autocomplete="off"
+              class="form-control"
+            />
+            <small>Tamaño recomendado: 300x300</small>
+            <app-validation-messages
+              [control]="form.controls['image']"
+            ></app-validation-messages>
+          </div>
+          <!-- /IMAGE -->
+          <!-- IMAGE PREVIEW -->
+          <img
+            [src]="form.controls['image'].value | img"
+            alt="Imagen del super heroe"
+            class="w-50 rounded mt-1"
+          />
+          <!-- /IMAGE PREVIEW -->
+          <!-- SUBMIT BTN -->
+          <div>
+            <button class="btn btn-primary mt-3" type="submit">
+              {{ hero?.id ? "Actualizar" : "Crear" }}
+            </button>
+          </div>
+          <!-- /SUBMIT BTN -->
+        </form>
+      </div>
+      <!-- /BODY -->
+    </div>
+    <!-- /MODAL CONTENT -->
+  </div>
+</div>

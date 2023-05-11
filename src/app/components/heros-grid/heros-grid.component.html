@@ -1,0 +1,59 @@
+<div class="my-3">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <!-- COLUMN -->
+    <div
+      *ngFor="
+        let hero of heros
+          | paginate : { itemsPerPage: itemsPerPage, currentPage: currentPage }
+      "
+      class="col-12 col-md-6 col-lg-4 col-xl-3"
+    >
+      <!-- CARD -->
+      <article class="card">
+        <!-- IMAGE -->
+        <img
+          [alt]="hero.name + ' Imagen'"
+          [src]="hero.image | img"
+          class="card-img-top"
+        />
+        <!-- /IMAGE -->
+        <!-- BODY -->
+        <div class="card-body">
+          <header>
+            <h5 class="card-title">{{ hero.name }}</h5>
+            <p class="card-text">
+              {{ hero.description | slice : 0 : 20 }}
+              {{ hero.description.length > 20 ? "..." : "" }}
+            </p>
+          </header>
+        </div>
+        <!-- /BODY -->
+        <!-- FOOTER -->
+        <footer class="card-footer">
+          <div class="btn-group d-flex justify-content-center">
+            <button class="btn btn-primary" [routerLink]="['/hero', hero.id]">
+              Ver
+            </button>
+            <button class="btn btn-success" (click)="edit.emit(hero)">
+              Actualizar
+            </button>
+            <button class="btn btn-danger" (click)="remove.emit(hero)">
+              Eliminar
+            </button>
+          </div>
+        </footer>
+        <!-- FOOTER -->
+      </article>
+      <!-- /CARD -->
+    </div>
+    <!-- /COLUMN -->
+  </div>
+  <div class="mt-3">
+    <app-pagination
+      [length]="heros.length"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage"
+      (changePage)="this.currentPage = $event"
+    ></app-pagination>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<nav>
+  <ul class="pagination">
+    <li *ngIf="currentPage > 1" class="page-item">
+      <a (click)="prev()" class="page-link" href="#">Anterior</a>
+    </li>
+    <li *ngFor="let page of buttons" class="page-item">
+      <a
+        class="page-link"
+        href="#"
+        (click)="moveTo(page)"
+        [class.bg-blue-300]="page == currentPage"
+      >
+        {{ page }}</a
+      >
+    </li>
+    <li *ngIf="currentPage < totalPages" class="page-item">
+      <a (click)="next()" class="page-link" href="#">Siguiente</a>
+    </li>
+  </ul>
+</nav>
